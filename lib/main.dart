@@ -7,6 +7,7 @@ import 'providers/page_provider.dart';
 
 import 'screens/home/home_page.dart';
 import 'screens/favorite/favorite_page.dart';
+import 'screens/ai_trip/ai_trip_page.dart';
 
 import 'widgets/common/city_search_sheet.dart';
 import 'widgets/common/app_bottom_nav_bar.dart';
@@ -37,6 +38,18 @@ class MainScaffold extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final index = ref.watch(pageIndexProvider);
+    Widget _buildPage(int index) {
+      switch (index) {
+        case 0:
+          return const HomePage();
+        case 1:
+          return const AITripPage();
+        case 2:
+          return const FavoritePage();
+        default:
+          return const HomePage();
+      }
+    }
     return Scaffold(
       extendBody: true,
       body: AnimatedSwitcher(
@@ -59,9 +72,7 @@ class MainScaffold extends ConsumerWidget {
         },
         child: KeyedSubtree(
           key: ValueKey<int>(index),
-          child: index == 0
-              ? const HomePage()
-              : const FavoritePage(),
+          child: _buildPage(index),
         ),
       ),
 
@@ -83,8 +94,11 @@ class MainScaffold extends ConsumerWidget {
         onHomeTap: () {
           ref.read(pageIndexProvider.notifier).setIndex(0);
         },
-        onFavoriteTap: () {
+        onAiTripTap: () {
           ref.read(pageIndexProvider.notifier).setIndex(1);
+        },
+        onFavoriteTap: () {
+          ref.read(pageIndexProvider.notifier).setIndex(2);
         },
       ),
     );
