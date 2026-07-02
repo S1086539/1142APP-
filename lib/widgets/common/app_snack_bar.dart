@@ -22,7 +22,7 @@ class AppSnackBar {
       SnackBar(
         duration: duration,
         behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.fromLTRB(16, 0, 16, 110),
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
         elevation: 0,
         backgroundColor: const Color(0xFF102A46).withValues(alpha: 0.96),
         shape: RoundedRectangleBorder(

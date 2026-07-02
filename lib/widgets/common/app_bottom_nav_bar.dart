@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class AppBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final VoidCallback onHomeTap;
+  final VoidCallback onAiTripTap;
   final VoidCallback onFavoriteTap;
 
   const AppBottomNavBar({
     super.key,
     required this.currentIndex,
     required this.onHomeTap,
+    required this.onAiTripTap,
     required this.onFavoriteTap,
   });
 
@@ -26,7 +28,7 @@ class AppBottomNavBar extends StatelessWidget {
         child: SizedBox(
           height: 74,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28),
+            padding: const EdgeInsets.symmetric(horizontal: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -37,12 +39,19 @@ class AppBottomNavBar extends StatelessWidget {
                   onTap: onHomeTap,
                 ),
 
-                const SizedBox(width: 64),
+                _NavItem(
+                  icon: Icons.auto_awesome_rounded,
+                  label: 'AI 行程',
+                  selected: currentIndex == 1,
+                  onTap: onAiTripTap,
+                ),
+
+                const SizedBox(width: 58),
 
                 _NavItem(
                   icon: Icons.bookmark_rounded,
                   label: '關注',
-                  selected: currentIndex == 1,
+                  selected: currentIndex == 2,
                   onTap: onFavoriteTap,
                 ),
               ],
@@ -75,7 +84,7 @@ class _NavItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(18),
       onTap: onTap,
       child: SizedBox(
-        width: 76,
+        width: 74,
         height: 58,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
